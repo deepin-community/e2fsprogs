@@ -233,10 +233,10 @@ typedef struct ea_refcount *ext2_refcount_t;
  */
 typedef struct e2fsck_struct *e2fsck_t;
 
-#define MAX_EXTENT_DEPTH_COUNT 5
+#define MAX_EXTENT_DEPTH_COUNT 8
 
 /*
- * This strucutre is used to manage the list of extents in a file. Placing
+ * This structure is used to manage the list of extents in a file. Placing
  * it here since this is used by fast_commit.h.
  */
 struct extent_list {
@@ -656,6 +656,7 @@ void sigcatcher_setup(void);
 void check_super_block(e2fsck_t ctx);
 int check_backup_super_block(e2fsck_t ctx);
 void check_resize_inode(e2fsck_t ctx);
+int check_init_orphan_file(e2fsck_t ctx);
 
 /* util.c */
 extern void *e2fsck_allocate_memory(e2fsck_t ctx, unsigned long size,

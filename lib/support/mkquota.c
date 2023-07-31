@@ -99,6 +99,8 @@ void quota_set_sb_inum(ext2_filsys fs, ext2_ino_t ino, enum quota_type qtype)
 
 	log_debug("setting quota ino in superblock: ino=%u, type=%d", ino,
 		 qtype);
+	if (inump == NULL)
+		return;
 	*inump = ino;
 	ext2fs_mark_super_dirty(fs);
 }
@@ -507,7 +509,8 @@ errcode_t quota_compute_usage(quota_ctx_t qctx)
 			continue;
 		if (ino == EXT2_ROOT_INO ||
 		    (ino >= EXT2_FIRST_INODE(fs->super) &&
-		     ino != quota_type2inum(PRJQUOTA, fs->super))) {
+		     ino != quota_type2inum(PRJQUOTA, fs->super) &&
+		     ino != fs->super->s_orphan_file_inum)) {
 			space = ext2fs_get_stat_i_blocks(fs,
 						EXT2_INODE(inode)) << 9;
 			quota_data_add(qctx, inode, ino, space);
