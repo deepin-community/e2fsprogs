@@ -1,3 +1,9 @@
+e2fsprogs (1.47.0-2deepin2) unstable; urgency=medium
+
+  * fixup extra "pkg-config" in deb_udevudevdir.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Tue, 27 Aug 2024 15:26:24 +0800
+
 e2fsprogs (1.47.0-2deepin1) unstable; urgency=medium
 
   * Obtain installation path through variables deb_udevudevdir and deb_systemdsystemunitdir.
