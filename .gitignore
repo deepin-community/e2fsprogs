@@ -13,7 +13,6 @@ Makefile
 *.o
 *.a
 *.orig
-*.patch
 *.pc
 *.rej
 *.swp

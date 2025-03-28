@@ -1,0 +1,39 @@
+Index: deepin-e2fsprogs/scrub/Makefile.in
+===================================================================
+--- deepin-e2fsprogs.orig/scrub/Makefile.in	2025-03-28 15:21:03.855618051 +0800
++++ deepin-e2fsprogs/scrub/Makefile.in	2025-03-28 15:43:53.055493393 +0800
+@@ -32,7 +32,7 @@
+ endif
+ 
+ ifeq ($(HAVE_SYSTEMD),yes)
+-SERVICE_FILES	= e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
++SERVICE_FILES	= e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service e2scrub_reap.timer
+ LIBPROGS	+= e2scrub_fail
+ INSTALLDIRS_TGT	+= installdirs-systemd installdirs-libprogs
+ INSTALL_TGT	+= install-systemd install-libprogs
+Index: deepin-e2fsprogs/scrub/e2scrub_reap.service.in
+===================================================================
+--- deepin-e2fsprogs.orig/scrub/e2scrub_reap.service.in	2025-03-28 15:21:03.855618051 +0800
++++ deepin-e2fsprogs/scrub/e2scrub_reap.service.in	2025-03-28 15:25:56.208578064 +0800
+@@ -21,5 +21,3 @@
+ SyslogIdentifier=%N
+ RemainAfterExit=no
+ 
+-[Install]
+-WantedBy=multi-user.target
+Index: deepin-e2fsprogs/scrub/e2scrub_reap.timer.in
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ deepin-e2fsprogs/scrub/e2scrub_reap.timer.in	2025-03-28 15:44:26.216930028 +0800
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Periodic Remove Stale Online ext4 Metadata Check Snapshots
++
++[Timer]
++# Run 1 minutes after boot
++OnBootSec=1min
++RandomizedDelaySec=60
++Persistent=true
++
++[Install]
++WantedBy=timers.target
