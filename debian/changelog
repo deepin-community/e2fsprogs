@@ -1,3 +1,9 @@
+e2fsprogs (1.47.0-2deepin3) unstable; urgency=medium
+
+  * Change e2scrub_reap.service from a boot-up service to a timer-triggered service.
+
+ -- xinpeng.wang <wangxinpeng@uniontech.com>  Fri, 28 Mar 2025 16:42:50 +0800
+
 e2fsprogs (1.47.0-2deepin2) unstable; urgency=medium
 
   * fixup extra "pkg-config" in deb_udevudevdir.
